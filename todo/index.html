@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Todo Extension</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="popup_content">
+        <h3>Your To-do List</h3>
         <ul>
             <li>One</li>
             <li>Two</li>
-            <li>Three</li>
+            <li>four</li>
         </ul>
-    </div>
-    <div id="error_content">
-        <p>Sorry this browser doesn't display the extension</p>
-
+        <input type="text" name="item" id="item-value">
+        <input type="button" value="Add" onclick="addToList()">
     </div>
     
-    <script src="todo/index.js"></script>
+    <div class="hidden" id="error_content">
+        Sorry this browser doesn't display the extension
+    </div>
+    
+    <script src="index.js"></script>
 </body>
 </html>
