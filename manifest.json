@@ -16,7 +16,7 @@
     "browser_action":{
         "default_icon":"icons/web/checked_1x.png",
         "default_title":"Shazam",
-        "default_popup":"todo/index.html"
+        "default_popup":"todo/popup.html"
     }
 
 }

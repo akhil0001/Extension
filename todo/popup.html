@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <div id="popup_content">
         <h3>Your To-do List</h3>
-        <ul>
+        <ul id="items">
             <li>One</li>
             <li>Two</li>
             <li>four</li>
         </ul>
         <input type="text" name="item" id="item-value">
-        <input type="button" value="Add" onclick="addToList()">
+        <button>Add</button>
     </div>
     
     <div class="hidden" id="error_content">
         Sorry this browser doesn't display the extension
     </div>
     
-    <script src="index.js"></script>
+    <script src="popup.js"></script>
 </body>
 </html>
