@@ -6,8 +6,8 @@ function addToList()
     li.appendChild(document.createTextNode(newItem));
     document.getElementById("item-value").value="";
     unlistedItems.appendChild(li);
+   // createNotifications();
 }
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('button').addEventListener('click', addToList);
-    main();
   });
