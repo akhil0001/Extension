@@ -1,26 +1,49 @@
 {
     "manifest_version":2,
-    "name":"Shazam",
-    "version":"0.1",
-    
-    "description": "This stores your all things that have to be completed",
+    "name":"Veronix",
+    "version":"1",
+    "description": "A beautiful todo",
     "homepage_url":"https://github.com/akhil0001/Extension",
     "icons":{
         "48":"icons/web/checked_1x.png",
         "96":"icons/web/checked_2x.png"
     },
+    "applications": {
+        "gecko": {
+          "strict_min_version": "54.0a1"
+        }
+    },
     "permissions":[
         "storage",
         "alarms",
-       "notifications"
+       "notifications",
+       "tabs"  
     ],
-    "browser_action":{
+    "sidebar_action":
+    {
         "default_icon":"icons/web/checked_1x.png",
-        "default_title":"Shazam",
-        "default_popup":"todo/popup.html"
+        "default_title":"Veronix",
+        "default_panel":"todo/sidebar.html"
     },
-    "background":{
-        "scripts":["todo/background-script.js"]
+    "commands":
+    {
+        "_open_the_side_bar":{
+            "suggested_key":{
+                "default":"Ctrl+Shift+K"
+            }
+        },
+        "_execute_sidebar_action":{
+
+            "suggested_key":{
+                "default":"Ctrl+Shift+B"
+            }
+        }
+
+
+
     }
+    
 
 }
+
+  
