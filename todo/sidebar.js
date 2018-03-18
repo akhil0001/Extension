@@ -1,21 +1,43 @@
-var WindowIdentity;
-const tasksContent=document.querySelector("#tasks");
+var WindowIdentity,newItem;
+const tasksContent=document.querySelector("#list");
 
-window.addEventListener("mouseover", ()=>{
-    tasksContent.setAttribute("contenteditable",true);
-});
+// window.addEventListener("mouseover", ()=>{
+//     tasksContent.setAttribute("contenteditable",true);
+// });
 
-window.addEventListener("mouseout", ()=>{
-    tasksContent.setAttribute("contenteditable",false);
+// window.addEventListener("mouseout", ()=>{
+//     tasksContent.setAttribute("contenteditable",false);
+//     browser.tabs.query({windowId: WindowIdentity,active:true}).then((tabs)=>{
+//         let tasksToStore={};
+//         tasksToStore["Veronix"]=tasksContent.textContent;
+//         browser.storage.local.set(tasksToStore);
+//         //console.log(tabs);
+//         //debugger;
+//     },onError);
+
+// });
+
+var FABElement=document.getElementById("addNewTask");
+document.querySelector('#saveTask').addEventListener('click', getTheDataFromTextArea);
+
+function getTheDataFromTextArea()
+{
+  newItem=document.getElementById('sample5').value;
+  document.getElementById('sample5').value="";
+  AddtoStorage(newItem);
+
+}
+
+function AddtoStorage(newItem)
+{
+   
     browser.tabs.query({windowId: WindowIdentity,active:true}).then((tabs)=>{
         let tasksToStore={};
-        tasksToStore["Veronica"]=tasksContent.textContent;
+        tasksToStore["Veronix"]=newItem;
         browser.storage.local.set(tasksToStore);
-        //console.log(tabs);
-        //debugger;
+        updateContent();
     },onError);
-
-});
+}
 
 function onError(error){
     console.error('Error: ${error}');
@@ -25,9 +47,9 @@ function updateContent() {
     browser.tabs.query({windowId: WindowIdentity, active: true})
       .then((tabs) => {
         return browser.storage.local.get();
-      })
+      })    
       .then((storedInfo) => {
-        tasksContent.textContent = storedInfo["Veronica"];
+        tasksContent.textContent = storedInfo["Veronix"];
       });
   }
   browser.tabs.onActivated.addListener(updateContent);

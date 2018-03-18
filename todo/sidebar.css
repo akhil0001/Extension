@@ -6,27 +6,30 @@ html, body {
   }
   
   body {
-    height: 90%;
+    height: 100%;
     font: caption;
     background-color: #F4F7F8;
   }
   
-  p {
-    margin: 1em 2em;
+  #list
+  {
+    margin:1em;
+    height:70%;
+    /* background: rgb(94, 137, 151); */
+  }
+  #todotasks
+  {
+    margin:1em 1em 0em 1em;
+    width:80%;
   }
   
-  #tasks{
-    height: 90%;
-    margin: 2em 2em 0 2em;
-    border: .5em solid #DDE4E9;
-    transition: background-color .2s ease-out;
-  }
-  
-  #tasks[contenteditable=true] {
-    background-color: white;
-    transition: background-color .2s ease-in;
-  }
   
   [contenteditable]:focus {
     outline: 0px solid transparent;
   }
+
+ #addNewTask
+ {
+  position: relative;
+  top:0%;
+ }
