@@ -21,26 +21,41 @@
             <a href="#notes" class="mdl-tabs__tab">Notes</a>
        </div>
        <div id="todo" class="mdl-tabs__panel is-active">
-            <ul class="demo-list-icon mdl-list">
+            <ul class="demo-list-icon mdl-list" id="todoTasks">
                     <li class="mdl-list__item">
+                            <span class="mdl-list__item-secondary-action">
+                                    <label for="list-checkbox-1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+                                    </label>
+                                </span>
                       <span class="mdl-list__item-primary-content">
-                      <i class="material-icons mdl-list__item-icon">person</i>
-                      Bryan Cranston
-                  </span>
+                      Book tickets for Avengers Infinity War
+                        </span>
+                  
                     </li>
                     <li class="mdl-list__item">
+                            <span class="mdl-list__item-secondary-action">
+                                    <label for="list-checkbox-2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                        <input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" checked />
+                                    </label>
+                                </span>
                       <span class="mdl-list__item-primary-content">
-                      <i class="material-icons mdl-list__item-icon">person</i>
-                      Aaron Paul
+                        Solve the issue of mvvm sdk
                     </span>
                     </li>
                     <li class="mdl-list__item">
+                            <span class="mdl-list__item-secondary-action">
+                                    <label for="list-checkbox-3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                                        <input type="checkbox" id="list-checkbox-3" class="mdl-checkbox__input"/>
+                                    </label>
+                                </span>
                       <span class="mdl-list__item-primary-content">
-                      <i class="material-icons mdl-list__item-icon">person</i>
-                      Bob Odenkirk
+                     
+                      Workout and exercise
                     </span>
                     </li>
                   </ul>
+                 
        </div>
        <div id="notes" class="mdl-tabs__panel">
             <div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -64,7 +79,10 @@
                   </div>
        </div>
    </div>
-
+   <button id="addNewTask" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored mdl-js-ripple-effect">
+        <!-- <i class="material-icons">Add</i> -->
+        +
+    </button>
 
     <script src="sidebar.js"></script>
 </body>

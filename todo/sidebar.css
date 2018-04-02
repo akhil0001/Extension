@@ -1,19 +1,19 @@
 html, body {
     height: 100%;
     width: 100%;
+    font-size: 2px;
     /* margin: 0;
     box-sizing: border-box;
   } */
 } 
   body {
     height: 100%;
-    font: caption;
+    /* font: caption; */
+    font-size: 12px;
     background-color: #F4F7F8;
   }
 
-        .demo-list-icon {
-          width: 300px;
-        }
+    
         .demo-card-wide.mdl-card {
           width: 200px;
           margin:2em; 
@@ -48,4 +48,11 @@ html, body {
  {
   position: relative;
   top:0%;
- } */ */
+ } */ 
+
+ #addNewTask
+ {
+   position: sticky;
+   top:90%;
+   left:80%;
+ }
