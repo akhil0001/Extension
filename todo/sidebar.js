@@ -11,8 +11,11 @@ newButton.addEventListener('click',function()
   timeline.play();
   document.getElementById('someInfo').style.visibility='visible';
   }
-  else
- timeline.playBackward();
+  else{
+    timeline.playBackward();
+    document.getElementById('someInfo').style.visibility='hidden';
+  }
+ 
  
 });
 
@@ -36,29 +39,26 @@ function addBurstAnimationtoButton()
 }
 function createACircleUnderTheButton()
 {
-  height= document.getElementsByClassName('wrapper')[0].clientWidth;
+  width= document.getElementsByClassName('wrapper')[0].clientWidth;
+  height=document.getElementsByClassName('wrapper')[0].clientHeight;
+  
+  var HeightSquare=Math.pow(height,2);
+  var WidthSquare= Math.pow(width,2);
+  var GoldenDiameter= (HeightSquare+WidthSquare)/2;
+  
   // document.getElementById()
     bomb=new mojs.Shape({
     shape:'circle',
     parent:newButton,
-    radiusX:{20:height},
-    radiusY:{20:height},
+    radiusX:{20:width},
+    radiusY:{20:width},
     fill:'#ff5a00',
     delay:200,
     duration:1000,
-    easing:'ease.out'
+    easing:'cubic.out'
 
   })
   
-   bomb2=new mojs.Shape({
-    shape:'circle',
-    parent:newButton,
-    radiusX:{20:document.documentElement.scrollWidth/2},
-    radiusY:{20:document.documentElement.scrollWidth/2},
-    duration:1000,
-    fill:'#ff5a00',
-    opacity:{0:0.5}
-  })
 }
 function playTheAnimationForTheButton(thingtoBePlayed)
 {
