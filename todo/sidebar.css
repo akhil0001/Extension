@@ -1,207 +1,286 @@
-.newBtn
+*
 {
-  position: absolute;
-  top:5%;
-  left:90%;
-  transition: all 0.5s ease-in;
-  z-index: 10;
+  box-sizing: border-box; 
 }
-.wrapper
+body
 {
-  position: absolute;
-  left: 10%;
-  top: 10%;
-  width: 50%;
-  height: 50%;
-  /* background:rgb(197, 185, 185); */
-  z-index: 20;
-  overflow: hidden;
-  box-shadow: 0px 0px 50px #555;
+  background: #f5f5f9;
+  font-family: 'Ubuntu', sans-serif;
 }
-#someInfo
-{position: inherit;
+.material-icons.md-18 { font-size: 18px; }
+.todo-gridContainer
+{
+  display: grid;
+  grid-template-rows:20px 2fr auto;
+  grid-gap:20px 10px;
+  align-items: center;
   visibility: hidden;
-  top:10%;
-  left: 10%;
-  z-index: 30;
-}
-.rotate.newBtn 
-{
-  transform: rotate(225deg);
-  
-  transition: all 0.5s ease-out;
-  z-index: 1;
 }
 
-#addNewTask
+.todo-gridContainer__addButton
 {
-  width: 50px;
-  height: 50px;
-  border-radius:50px;
-  border: #fff;
-  background: #ff5a00;
-  /* box-shadow:0px 5px 45px #ff4800; */
-  color:#fff;
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.todo-gridContainer__addButton button{
+ 
+  width:1.7em;
+  height: 1.7em;
+  border-radius: 1.7em;
+  border: none;
+  background: #fcd000;
   text-align: center;
+  font-size: 1.7em;
+  font-weight: 100;
+  margin: auto;
+  outline: none;
+  box-shadow: 0px 0px 2px #2222224d;
+  cursor: pointer;
 }
-
-#addNewTask svg{
-  width: 40%;
-height: 40%;
-position: relative;
-top: 5%;
-fill: #fff;
-z-index: 1;
+.todo-gridContainer__head
+{
+  background:#fff;
+  box-shadow: 0px 0px 4px #2222224d;
+  height:3em;
 }
+.todo-gridContainer__head h3
+{
+  padding-top: 1em;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  font-weight: 400;
+}
+.todo-gridContainer__tasks
+{
+  padding-left:10px;
 
-
-
-
-.group
+}
+.todo-gridContainer__tasks__list
+{
+  padding: 10px;
+}
+li
 {
   position: relative;
-  margin-bottom: 45px;
+  border-radius: 5px;
+  background-color:#fff;
+  
+  color: #423c3a;
+
+list-style-type: none;
+
+margin: 0 0 6px 0;
+
+box-shadow: 0px 2px 8px #2222224d;
+padding-bottom: 1em;
+
 }
 
-input{
-  font-size: 14px;
-  padding: 5px 5px 5px 5px;
-  display: block;
-  width: 90%;
+li div{
+  position: inherit;
+    top: 0%;
+    left: 0%;
+    width:100%;
+    height: 5px;
+    background: #039BE5;
+    border-radius: 2px;
+}
+
+li h3{
+  position: inherit;
+  left:5%;
+  width:100%;
+  justify-content: stretch
+}
+
+li p{
+  position: inherit;
+  left:5%;
+  width:90%;
+  justify-content: stretch
+}
+
+li button
+{
+  position: absolute;
+  right: 1vw;
+  bottom:1vh;
+  background: none;
   border: none;
-  border-bottom: 1px solid #fff;
-  background: transparent;
-  color: #fff;
-  /* transition:0.2s ease all; */
-  /* outline-color:#ff5a00; */
-  outline:none;
+  cursor: pointer;
 }
 
-input:focus{
-outline:none;
-box-shadow: none;
-}
-input:blur
-label          {
-  color:rgb(255, 255, 255); 
-  font-size:18px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:5px;
-  transition:0.2s ease all; 
-}
 
-/* active state */
-input:focus ~ label, input:valid ~ label     {
-  top:-20px;
-  font-size:14px;
-  color:#fff;
-  text-shadow: 0px 0px 10px #fff;
-}
 
-input:invalid
+/* Here starts the css for addtask Container */
+
+.add-task-container
 {
-  outline: none;
+  display: grid;
+  overflow: hidden;
+  background: #3949AB;
+  color: #ddd;
+  grid-template-rows: 60px 20px 2fr;
+  grid-gap: 10px 10px;
+  align-items: center;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
 }
-/* Todo: have to remove the default thingy on button */
-/* #someInfo
+
+.add-task-container__heading,.add-task-container__disclaimer
 {
-  padding:5px 50px 50px;
+
+  height: 3em;
+}
+
+.add-task-container__heading h3
+{
+  padding: 0.5em;
+  text-align: center;
+  text-align-last: center;
+  font-weight: 400; 
   
 }
-.group 			  { 
-  position:relative; 
-  margin-bottom:45px; 
-  background: transparent;
+
+.add-task-container__disclaimer p
+{
+  position: relative;
+  padding-left: 10px; 
+  padding-right: 20px;  
+  text-align: center; 
+  text-align-last: center;
 }
-input 				{
-  font-size:18px;
-  padding:5px 10px 10px 5px;
-  display:block;
-  width:300px;
-  border:none;
-  border-bottom:1px solid #aaa;
-  background: transparent;
+
+.add-task-container__box
+{
+ position: relative;
+ top: 0%;
+ left: 0%;
+ width: 90%;
+ height: 65%;
+ background: #fff;
+ box-shadow: 0px 2px 8px #2222224d;
+ border-radius: 5px;
+ margin: calc(50vh - 220px) auto;
+  padding: 20px 30px;
+  box-sizing: border-box;
 }
-input:focus 		{ outline:none; } */
 
-/* LABEL ======================================= */
-/* label 				 {
-  color:#fff; 
-  font-size:18px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+/* .add-task-container__box #task_title
+{
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top:5%; */
+  /* background: none;
+  border: none;
+  border-bottom:2px grey; */
+/* }
+
+.add-task-container__box #task_description
+{
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top:15%;
+  padding: 10px;
 } */
 
-/* active state */
-/* input:focus ~ label, input:valid ~ label 		{
-  top:-20px;
-  font-size:14px;
-  color:#fff;
-} */
-
-/* BOTTOM BARS ================================= */
-/* .bar 	{ position:relative; display:block; width:300px; }
-.bar:before, .bar:after 	{
-  content:'';
-  height:2px; 
-  width:0;
-  bottom:1px; 
-  position:absolute;
-  background:#fff; 
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+.add-task-container__box .priorityboxes
+{
+  position: relative;
+  width: 100%;
+  height: 20%;
+  background: #111;
+  box-shadow: 0px 0px 2px #2222224d;
+  
 }
-.bar:before {
-  left:50%;
+#savetheTask
+{
+  float: right;
+  padding: 8px 12px;
+  margin: 8px 0 0;
+  font-family: "Montserrat", sans-serif;
+  border: 2px solid #78788c;
+  background: 0;
+  color: #5a5a6e;
+  cursor: pointer;
+  transition: all 0.3s;
 }
-.bar:after {
-  right:50%; 
-} */
-
-/* active state */
-/* input:focus ~ .bar:before, input:focus ~ .bar:after {
-  width:50%;
-} */
-
-/* HIGHLIGHTER ================================== */
-/* .highlight {
-  position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-} */
-
-/* active state */
-/* input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-} */
-
-/* ANIMATIONS ================ */
-/* @-webkit-keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
+#savetheTask:hover {
+  background: #78788c;
+  color: #fff;
 }
-@-moz-keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
+.critical-priority
+{
+ position: absolute;
+ width: 50%;
+ left: 0%;
+ top: 0%;
+ height: 50%;
+ background: #FF7043;
 }
-@keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
-} */
+.high-priority
+{
+  position: absolute;
+ width: 50%;
+ left: 0%;
+ top: 50%;
+ height: 50%;
+  background: #FFEE58;
+}
+.medium-priority
+{
+  
+  position: absolute;
+ width: 50%;
+ left: 50%;
+ top: 0%;
+ height: 50%;
+  background: #42A5F5;
+}
+.low-priority
+{
+  position: absolute;
+ width: 50%;
+ left: 50%;
+ top: 50%;
+ height: 50%;
+ background: #66BB6A;
+}
+.priorityboxes div{
+  
+  color: #fff;
+}
+.priorityboxes div:hover{
+  box-shadow: -10px 10px 20px #2222224d;
+}
+.add-task-container__box input,textarea{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: none;
+  outline: none;
+  resize: none;
+  border: 0;
+  transition: all 0.3s;
+  border-bottom: 2px solid #bebed2;
+}
+
+.add-task-container__box input:focus,.add-task-container__box textarea:focus {
+  border-bottom: 2px solid #78788c;
+}
+.add-task-container__box p:before {
+  content: attr(type);
+  display: block;
+  margin: 0px 0 0;
+  font-size: 14px;
+  color: #5a5a5a;
+}

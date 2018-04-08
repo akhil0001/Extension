@@ -1,70 +1,104 @@
-var newButton = document.querySelector('#addNewTask');
-var buttonDiv= document.querySelector('.newBtn');
-var Burst1,bomb,bomb2,timeline;
-addBurstAnimationtoButton();
-createACircleUnderTheButton();
-playTheAnimationForTheButton(bomb);
-newButton.addEventListener('click',function()
-{
-  buttonDiv.classList.toggle('rotate');
-  if(buttonDiv.classList.contains('rotate')){
-  timeline.play();
-  document.getElementById('someInfo').style.visibility='visible';
-  }
-  else{
-    timeline.playBackward();
-    document.getElementById('someInfo').style.visibility='hidden';
-  }
- 
- 
-});
+const addButton = document.querySelector('.addButton');
+const listitemsOfTodoTasks = document.querySelector('.todo-gridContainer__tasks__list');
+const todoGridContainer =  document.querySelector('.todo-gridContainer');
+const addTaskContainer = document.querySelector('.add-task-container');
+// const listItemsOfDoneTasks = document.querySelector('.todo-gridContainer__doneTasks__list')
+const saveTheButton = document.querySelector('#savetheTask');
 
-function addBurstAnimationtoButton()
+var tempListItem;
+
+
+
+saveTheButton.addEventListener('click',function(){
+  todoGridContainer.style.visibility = 'visible';
+  addTaskContainer.style.visibility='hidden';
+})
+
+addButton.addEventListener('click',function(){
+  tempListItem = '<li>Hello There I am freaking awesome</li>';
+  var title = 'Lol';
+  var body = 'Hello there! This is akhil! I am a wannabe superhero. ok '
+  // storeTask(title,body)
+  todoGridContainer.style.visibility = 'hidden';
+  addTaskContainer.style.visibility='visible';
+})
+
+initializingTheExtensionFromLocalStorage();
+
+function initializingTheExtensionFromLocalStorage()
 {
-   Burst1 = new mojs.Burst({
-    parent: newButton,
-    top: "50%",
-    left: "50%",
-    radius: { 0: 80 },
-    count: 18,
-    children: {
-      shape: "circle",
-      fill: { red: "yellow" },
-      strokeWidth: 1,
-      duration: 600,
-      stroke: { red: "blue" }
+  var gettingAllStorageItems = browser.storage.local.get(null);
+gettingAllStorageItems.then((tasks)=> {
+  var taskKeys = Object.keys(tasks);
+  
+  
+    for (const taskKey of taskKeys) {
+      var currentTask = tasks[taskKey];
+      displayTheTask(taskKey,currentTask);
     }
-  });
- 
-}
-function createACircleUnderTheButton()
-{
-  width= document.getElementsByClassName('wrapper')[0].clientWidth;
-  height=document.getElementsByClassName('wrapper')[0].clientHeight;
-  
-  var HeightSquare=Math.pow(height,2);
-  var WidthSquare= Math.pow(width,2);
-  var GoldenDiameter= (HeightSquare+WidthSquare)/2;
-  
-  // document.getElementById()
-    bomb=new mojs.Shape({
-    shape:'circle',
-    parent:newButton,
-    radiusX:{20:width},
-    radiusY:{20:width},
-    fill:'#ff5a00',
-    delay:200,
-    duration:1000,
-    easing:'cubic.out'
+})
 
+}
+
+function storeTask(title,body)
+{
+  var taskToBeStored = browser.storage.local.set({[title]:body});
+  taskToBeStored.then(() => {
+    displayTheTask(title,body);
   })
-  
-}
-function playTheAnimationForTheButton(thingtoBePlayed)
-{
-   timeline = new mojs.Timeline({
-    repeat: 0
-  }).add(thingtoBePlayed);
- 
 }
 
+
+function displayTheTask(title,body) {
+var listItem = document.createElement('li');
+var titleItem = document.createElement('h3');
+var doneButton = document.createElement('button');
+var taskBody = document.createElement('p');
+var priorityTask = document.createElement('div')
+
+titleItem.textContent = title;
+taskBody.textContent = body;
+doneButton.innerHTML = '<i class="material-icons md-18">delete</i>';
+
+doneButton.addEventListener('click',function(e){
+  console.dir(e);
+  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+  console.dir(listitemsOfTodoTasks.childNodes);
+  if (listitemsOfTodoTasks.childNodes.length==1) {
+    var p =document.createElement('p');
+    p.textContent = 'No Tasks'
+    listitemsOfTodoTasks.appendChild(p);
+  }
+//  shiftTheTaskfromTodotoDoneList(title,e,body);
+})
+
+listItem.appendChild(priorityTask);
+listItem.appendChild(titleItem);
+listItem.appendChild(taskBody);
+listItem.appendChild(doneButton);
+
+
+
+listitemsOfTodoTasks.appendChild(listItem);
+}
+
+
+// function shiftTheTaskfromTodotoDoneList(title,e,body){
+// var tobeTransferedelement=(e.target.parentNode)
+// listItemsOfDoneTasks.appendChild(tobeTransferedelement);
+// e.target.parentNode.removeChild(e.target);
+// browser.storage.local.remove('todo')
+// var doneTasksThatareStored = browser.storage.local.get();
+// var doneTasksinStorage={'done':{}};
+// doneTasksThatareStored.then((tasks)=>{
+//   if(tasks)
+//   doneTasksinStorage = tasks;
+// })  
+// doneTasksinStorage['done'][title]=body;
+// var taskToBeStored = browser.storage.local.set(doneTasksinStorage);
+//   taskToBeStored.then(() => {
+//     //displayTheTask(title,body);
+//   })
+// }
+
+//Todo: Window update has to be done so that all are in sync and also that there is code in annotate page

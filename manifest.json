@@ -22,7 +22,7 @@
     "sidebar_action":
     {
         "default_icon":"icons/web/checked_1x.png",
-        "default_title":"Veronix",
+        "default_title":"2Do",
         "default_panel":"todo/sidebar.html"
     },
     "commands":
