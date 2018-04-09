@@ -1,22 +1,23 @@
 .newBtn
 {
   position: absolute;
-  top:5%;
-  left:90%;
+  top:1%;
+  left:70%;
   transition: all 0.5s ease-in;
   z-index: 10;
+  /* padding-right: 100px; */
 }
 .wrapper
 {
   position: absolute;
-  left: 10%;
-  top: 10%;
-  width: 50%;
-  height: 50%;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100%;
   /* background:rgb(197, 185, 185); */
   z-index: 20;
   overflow: hidden;
-  box-shadow: 0px 0px 50px #555;
+  
 }
 #someInfo
 {position: inherit;
@@ -24,6 +25,8 @@
   top:10%;
   left: 10%;
   z-index: 30;
+  padding: 10px;
+  width: 90%;
 }
 .rotate.newBtn 
 {
@@ -62,6 +65,7 @@ z-index: 1;
 {
   position: relative;
   margin-bottom: 45px;
+  width:90%;
 }
 
 input{
@@ -75,17 +79,15 @@ input{
   color: #fff;
   /* transition:0.2s ease all; */
   /* outline-color:#ff5a00; */
-  outline:none;
+  /* outline:none; */
+  
+  
 }
 
-input:focus{
-outline:none;
-box-shadow: none;
-}
-input:blur
-label          {
+
+label{
   color:rgb(255, 255, 255); 
-  font-size:18px;
+  font-size:12px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
@@ -95,113 +97,42 @@ label          {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label     {
+input:focus ~ label,input:valid ~ label{
   top:-20px;
   font-size:14px;
   color:#fff;
-  text-shadow: 0px 0px 10px #fff;
+  text-shadow: 0px 0px 3px #fff;
+  
 }
 
-input:invalid
+input:active
 {
   outline: none;
 }
 /* Todo: have to remove the default thingy on button */
-/* #someInfo
+
+#add
 {
-  padding:5px 50px 50px;
-  
+  position: absolute;  
+  left: 80%;  
+  width:50px;
+  height:30px;
+  background: #fff;
+  border: none;
+  border-radius: 20px;
+  color: #ff5a00;
+  /* box-shadow: 0px 0px 0px #ddd; */
+  text-align: center;
 }
-.group 			  { 
-  position:relative; 
-  margin-bottom:45px; 
-  background: transparent;
-}
-input 				{
-  font-size:18px;
-  padding:5px 10px 10px 5px;
-  display:block;
-  width:300px;
-  border:none;
-  border-bottom:1px solid #aaa;
-  background: transparent;
-}
-input:focus 		{ outline:none; } */
 
-/* LABEL ======================================= */
-/* label 				 {
-  color:#fff; 
-  font-size:18px;
-  font-weight:normal;
-  position:absolute;
-  pointer-events:none;
-  left:5px;
-  top:10px;
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
-} */
-
-/* active state */
-/* input:focus ~ label, input:valid ~ label 		{
-  top:-20px;
-  font-size:14px;
+#add:hover
+{
+  /* box-shadow: 0px 0px 40px #ddd; */
+  background: #ff5a00;
   color:#fff;
-} */
-
-/* BOTTOM BARS ================================= */
-/* .bar 	{ position:relative; display:block; width:300px; }
-.bar:before, .bar:after 	{
-  content:'';
-  height:2px; 
-  width:0;
-  bottom:1px; 
-  position:absolute;
-  background:#fff; 
-  transition:0.2s ease all; 
-  -moz-transition:0.2s ease all; 
-  -webkit-transition:0.2s ease all;
+  transition: all 0.2s ease-in;
 }
-.bar:before {
-  left:50%;
+button:focus
+{
+  outline: none;
 }
-.bar:after {
-  right:50%; 
-} */
-
-/* active state */
-/* input:focus ~ .bar:before, input:focus ~ .bar:after {
-  width:50%;
-} */
-
-/* HIGHLIGHTER ================================== */
-/* .highlight {
-  position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-} */
-
-/* active state */
-/* input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-} */
-
-/* ANIMATIONS ================ */
-/* @-webkit-keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
-}
-@-moz-keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
-}
-@keyframes inputHighlighter {
-	from { background:#fff; }
-  to 	{ width:0; background:transparent; }
-} */

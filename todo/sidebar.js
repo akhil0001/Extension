@@ -1,5 +1,6 @@
 var newButton = document.querySelector('#addNewTask');
 var buttonDiv= document.querySelector('.newBtn');
+var addButton=document.querySelector('#add')
 var Burst1,bomb,bomb2,timeline;
 addBurstAnimationtoButton();
 createACircleUnderTheButton();
@@ -14,15 +15,24 @@ newButton.addEventListener('click',function()
   else{
     timeline.playBackward();
     document.getElementById('someInfo').style.visibility='hidden';
+    
   }
  
  
 });
 
+addButton.addEventListener('click',function(){
+  //timeline.playBackward();
+ // buttonDiv.classList.toggle('rotate');
+//  document.getElementById('someInfo').style.visibility='hidden';
+  addBurstAnimationtoButton();
+    
+})
+
 function addBurstAnimationtoButton()
 {
    Burst1 = new mojs.Burst({
-    parent: newButton,
+    parent: addButton,
     top: "50%",
     left: "50%",
     radius: { 0: 80 },
@@ -31,7 +41,7 @@ function addBurstAnimationtoButton()
       shape: "circle",
       fill: { red: "yellow" },
       strokeWidth: 1,
-      duration: 600,
+      duration: 500,
       stroke: { red: "blue" }
     }
   });
@@ -50,8 +60,8 @@ function createACircleUnderTheButton()
     bomb=new mojs.Shape({
     shape:'circle',
     parent:newButton,
-    radiusX:{20:width},
-    radiusY:{20:width},
+    radiusX:{20:1000},
+    radiusY:{20:1000},
     fill:'#ff5a00',
     delay:200,
     duration:1000,
