@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=ss, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Veronix</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" href="sidebar.css">
 </head>
+
 <body>
 
+    <div class="universal-container__addButton">
+        <button class="addButton">+</button>
+        <!-- Todo:Think about making it sticky or FAB -->
+    </div>
     <div class="todo-gridContainer">
         <div class="todo-gridContainer__head">
-          <h3>Just Today</h3> 
+            <h3>Just Today</h3>
         </div>
-        <div class="todo-gridContainer__addButton">
-                <button class="addButton">+</button>
-                  <!-- Todo:Think about making it sticky or FAB -->
-              </div>
+
         <div class="todo-gridContainer__tasks">
             Todo Tasks:
             <ul class="todo-gridContainer__tasks__list">
-                
+
             </ul>
         </div>
         <!-- <div class="todo-gridContainer__doneTasks">
@@ -32,33 +34,34 @@
                    
                 </ul>
         </div> -->
-       
+
     </div>
     <div class="add-task-container">
         <div class="add-task-container__heading">
-          <h3> Add the plan</h3> 
+            <h3> Add the plan</h3>
         </div>
         <div class="add-task-container__disclaimer">
-          <p>Note: We only plan today and must be completed today</p> 
+            <p>Note: We only plan today and must be completed today</p>
         </div>
         <div class="add-task-container__box">
-                <p type="Title:">
-           <input type="text" name="Title" id="task_title" placeholder="Enter the title of task here" required> 
-           <p type="Description:">
-           <textarea name="description" id="task_description" cols="10" rows="1" placeholder="Enter the description here..."></textarea>
-            <p type="Deadline">
-            <input type="date" name="deadline" id="task_deadline" placeholder="01-04-2018">
-           <p type="Color:">
-           <div class="priorityboxes">
-               <div class="critical-priority"></div>
-               <div class="high-priority"></div>
-               <div class="medium-priority"></div>
-               <div class="low-priority"></div>
-           </div>
-           <button id="savetheTask">Save</button>
+            <p type="Title:">
+                <input type="text" name="Title" id="task_title" placeholder="Enter the title of task here" required>
+                <p type="Description:">
+                    <textarea name="description" id="task_description" cols="10" rows="1" placeholder="Enter the description here..."></textarea>
+                    <p type="Deadline">
+                        <input type="date" name="deadline" id="task_deadline" placeholder="01-04-2018">
+                        <p type="Color:">
+                            <div class="priorityboxes">
+                                <div class="critical-priority"></div>
+                                <div class="high-priority"></div>
+                                <div class="medium-priority"></div>
+                                <div class="low-priority"></div>
+                            </div>
+                            <button id="savetheTask">Save</button>
         </div>
     </div>
 
     <script src="sidebar.js"></script>
 </body>
+
 </html>

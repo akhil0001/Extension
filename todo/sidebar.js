@@ -4,7 +4,31 @@ const todoGridContainer =  document.querySelector('.todo-gridContainer');
 const addTaskContainer = document.querySelector('.add-task-container');
 // const listItemsOfDoneTasks = document.querySelector('.todo-gridContainer__doneTasks__list')
 const saveTheButton = document.querySelector('#savetheTask');
+const highPriority = document.querySelector('.high-priority');
+const mediumPriority = document.querySelector('.medium-priority');
+const lowPriority = document.querySelector('.low-priority');
+const criticalPriority = document.querySelector('.critical-priority');
 
+var colorSelected;
+
+highPriority.addEventListener('click',function()
+{
+  colorSelected = "#FFEE58";
+});
+
+criticalPriority.addEventListener('click',() =>{
+  colorSelected = "#FF7043";
+});
+
+mediumPriority.addEventListener('click',()=>
+{
+  colorSelected = "#42A5F5";
+});
+
+lowPriority.addEventListener('click',()=>
+{
+  colorSelected="#66BB6A";
+})
 var tempListItem;
 
 
@@ -12,9 +36,13 @@ var tempListItem;
 saveTheButton.addEventListener('click',function(){
   var titleOfTask = document.getElementById('task_title').value;
   var Description = document.getElementById('task_description').value;
-  var colorSelected = '#42A5F5';
+ 
+  var descriptionJSON={description:"",color:"",deadline:""};
+  descriptionJSON['description']=Description;
+  descriptionJSON['color']=colorSelected;
+
   //hidetheContainer and load the diiv with the specific animation
-  storeTask(titleOfTask,Description);
+  storeTask(titleOfTask,descriptionJSON);
   hideThetodoGridContainer();
 
 })
@@ -22,7 +50,7 @@ saveTheButton.addEventListener('click',function(){
 function hideThetodoGridContainer() {
   todoGridContainer.style.visibility = 'visible';
   addTaskContainer.style.visibility='hidden';
-//  / document.getElementsByTagName('html')[0].style.overflow = 'visible';
+document.getElementsByTagName('body')[0].style.background = '#f5f5f9';
 }
 
 addButton.addEventListener('click',function(){
@@ -34,7 +62,7 @@ addButton.addEventListener('click',function(){
   Description.value = "";
   todoGridContainer.style.visibility = 'hidden';
   addTaskContainer.style.visibility='visible';
-  // document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+  document.getElementsByTagName('body')[0].style.background = '#3949AB';
 })
 
 initializingTheExtensionFromLocalStorage();
@@ -72,9 +100,10 @@ var priorityTask = document.createElement('div')
 var editButton = document.createElement('button');
 
 titleItem.textContent = title;
-taskBody.textContent = body;
+taskBody.textContent = body.description;
 doneButton.innerHTML = '<i class="material-icons md-18">delete</i>';
 editButton.innerHTML = '<i class="material-icons md-18">mode_edit</i>'
+priorityTask.style.background=body.color;
 
 doneButton.addEventListener('click',function(e){
   browser.storage.local.remove(e.target.parentNode.childNodes[1].innerText);
