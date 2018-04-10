@@ -22,10 +22,11 @@ saveTheButton.addEventListener('click',function(){
 function hideThetodoGridContainer() {
   todoGridContainer.style.visibility = 'visible';
   addTaskContainer.style.visibility='hidden';
+//  / document.getElementsByTagName('html')[0].style.overflow = 'visible';
 }
 
 addButton.addEventListener('click',function(){
-  tempListItem = '<li>Hello There I am freaking awesome</li>';
+  // tempListItem = '<li>Hello There I am freaking awesome</li>';
   var titleOfTask = document.getElementById('task_title');
   var Description = document.getElementById('task_description');
   var colorSelected = '#42A5F5';
@@ -33,6 +34,7 @@ addButton.addEventListener('click',function(){
   Description.value = "";
   todoGridContainer.style.visibility = 'hidden';
   addTaskContainer.style.visibility='visible';
+  // document.getElementsByTagName('html')[0].style.overflow = 'hidden';
 })
 
 initializingTheExtensionFromLocalStorage();
