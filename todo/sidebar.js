@@ -13,6 +13,7 @@ var visibilityFlagForTheFirstScreen = false;
 var colorSelected;
 var totalNumberofTasks;
 
+
 highPriority.addEventListener('click',function()
 {
   colorSelected = "#FFEE58";
@@ -114,12 +115,14 @@ function storeTask(title,body)
 
 
 function displayTheTask(title,body) {
+  
 var listItem = document.createElement('li');
 var titleItem = document.createElement('h3');
 var doneButton = document.createElement('button');
 var taskBody = document.createElement('p');
 var priorityTask = document.createElement('div')
 var editButton = document.createElement('button');
+var headingPlusDiv = document.createElement('div');
 
 titleItem.textContent = title;
 taskBody.textContent = body.description;

@@ -24,7 +24,7 @@ body
   left: 80%;
   margin:2px 2px 2px 2px;
   top:10px;
-  z-index: 20;
+  z-index: 30;
 }
 
 .universal-container__addButton button{
