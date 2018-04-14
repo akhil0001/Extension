@@ -1,0 +1,8 @@
+browser.storage.local.remove(e.target.parentNode.childNodes[2].innerText);
+  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+  console.dir(listitemsOfTodoTasks.childNodes);
+  if (listitemsOfTodoTasks.childNodes.length==1) {
+    var p =document.createElement('p');
+    p.textContent = 'No Tasks'
+    listitemsOfTodoTasks.appendChild(p);
+  }

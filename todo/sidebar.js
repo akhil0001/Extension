@@ -11,7 +11,7 @@ const criticalPriority = document.querySelector('.critical-priority');
 var visibilityFlagForTheFirstScreen = false;
 
 var colorSelected;
-var totalNumberofTasks;
+var totalNumberofTasks=0;
 
 
 highPriority.addEventListener('click',function()
@@ -46,9 +46,9 @@ var tempListItem;
 saveTheButton.addEventListener('click',function(){
   var titleOfTask = document.getElementById('task_title').value;
   var Description = document.getElementById('task_description').value;
- 
+  totalNumberofTasks++;
   if(titleOfTask==='')
-  titleOfTask='Task'+(totalNumberofTasks+1);
+  titleOfTask='Task #'+(totalNumberofTasks);
   var descriptionJSON={description:"",color:"",deadline:""};
   descriptionJSON['description']=Description;
   descriptionJSON['color']=colorSelected;
@@ -118,50 +118,61 @@ function displayTheTask(title,body) {
   
 var listItem = document.createElement('li');
 var titleItem = document.createElement('h3');
-var doneButton = document.createElement('button');
 var taskBody = document.createElement('p');
 var priorityTask = document.createElement('div')
-var editButton = document.createElement('button');
-var headingPlusDiv = document.createElement('div');
 
+var menuButton = document.createElement('button');
+var headingPlusDiv = document.createElement('div');
+const editPlusDeleteDiv = document.createElement('div');
+const doneButton = document.createElement('button');
+var editButton = document.createElement('button');
+
+editPlusDeleteDiv.setAttribute('class','editPlusDeleteDiv');
+doneButton.setAttribute('id','done');
+editButton.setAttribute('id','edit');
+editButton.innerHTML = '<i class="material-icons md-18">mode_edit</i>';
+doneButton.innerHTML= '<i class="material-icons md-18">done</i>'
+editPlusDeleteDiv.appendChild(doneButton);
+editPlusDeleteDiv.appendChild(editButton);
+editPlusDeleteDiv.style.visibility='hidden';
 titleItem.textContent = title;
 taskBody.textContent = body.description;
-doneButton.innerHTML = '<i class="material-icons md-18">delete</i>';
-editButton.innerHTML = '<i class="material-icons md-18">mode_edit</i>'
+menuButton.innerHTML = '<i class="material-icons md-18">menu</i>';
+
 priorityTask.style.background=body.color;
-doneButton.style.zIndex='30'; 
-doneButton.addEventListener('click',function(e){
-  browser.storage.local.remove(e.target.parentNode.childNodes[1].innerText);
-  e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-  console.dir(listitemsOfTodoTasks.childNodes);
-  if (listitemsOfTodoTasks.childNodes.length==1) {
-    var p =document.createElement('p');
-    p.textContent = 'No Tasks'
-    listitemsOfTodoTasks.appendChild(p);
-  }
+menuButton.style.zIndex='30'; 
+menuButton.addEventListener('click',function(e){
+ if(editPlusDeleteDiv.style.visibility == 'hidden'){
+  editPlusDeleteDiv.style.background = body.color;
+  editPlusDeleteDiv.style.visibility = 'visible';
+ }
+ else{
+  editPlusDeleteDiv.style.visibility = 'hidden';
+ }
   
 //  shiftTheTaskfromTodotoDoneList(title,e,body);
 })
 
 editButton.addEventListener('click',function(){
   alert('Hi Working');
-});
+})
 
 listItem.appendChild(priorityTask);
+listItem.appendChild(menuButton);
 listItem.appendChild(titleItem);
 listItem.appendChild(taskBody);
-listItem.appendChild(doneButton);
+listItem.appendChild(editPlusDeleteDiv);
 listItem.style.cursor='pointer';
 // listItem.appendChild(editButton);
-listItem.addEventListener('click',()=>{
+// listItem.addEventListener('click',()=>{
   
-  hideThetodoGridContainer(true);
-  visibilityFlagForTheFirstScreen=true;
-  var titleOfTask = document.getElementById('task_title');
-  var Description = document.getElementById('task_description');
-  titleOfTask.value = title;
-  Description.value = body.description;
-})
+//   hideThetodoGridContainer(true);
+//   visibilityFlagForTheFirstScreen=true;
+//   var titleOfTask = document.getElementById('task_title');
+//   var Description = document.getElementById('task_description');
+//   titleOfTask.value = title;
+//   Description.value = body.description;
+// })
 
 listitemsOfTodoTasks.appendChild(listItem);
 }
