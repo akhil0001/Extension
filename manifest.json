@@ -1,7 +1,7 @@
 {
     "manifest_version":2,
     "name":"Veronix",
-    "version":"1.1.1",
+    "version":"1.1.2",
     "description": "A beautiful todo",
     "homepage_url":"https://github.com/akhil0001/Extension",
     "icons":{
