@@ -36,12 +36,20 @@ body
   background: #3949AB;
   color: #fff;
   text-align: center;
-  font-size: 1.7em;
-  font-weight: 100;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: 200;
   margin: auto;
   outline: none;
   box-shadow: 0px 0px 2px #2222224d;
   cursor: pointer;
+  transition:0.5s;
+}
+
+.animeButton
+{
+  transform: rotateX(30deg);
 }
 .todo-gridContainer__head
 {
@@ -80,6 +88,7 @@ margin: 0 0 6px 0;
 
 box-shadow: 0px 2px 8px #2222224d;
 padding-bottom: 1em;
+transition: transform 0.5s;
 
 }
 
@@ -118,6 +127,10 @@ li button
   cursor: pointer;
 }
 
+li:hover
+{
+  transform: scale(1.05);
+}
 .editPlusDeleteDiv
 {
   position: absolute;
@@ -195,10 +208,10 @@ background: indigo;
 .add-task-container__box
 {
  position: relative;
- top: 0%;
+ top: -10%;
  left: 0%;
  width: 90%;
- height: 35em;
+ height: 25em;
  background: #fff;
  box-shadow: 0px 2px 8px #2222224d;
  border-radius: 5px;

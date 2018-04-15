@@ -1,6 +1,6 @@
 const addButton = document.querySelector('.addButton');
 const listitemsOfTodoTasks = document.querySelector('.todo-gridContainer__tasks__list');
-const todoGridContainer =  document.querySelector('.todo-gridContainer');
+const todoGridContainer = document.querySelector('.todo-gridContainer');
 const addTaskContainer = document.querySelector('.add-task-container');
 // const listItemsOfDoneTasks = document.querySelector('.todo-gridContainer__doneTasks__list')
 const saveTheButton = document.querySelector('#savetheTask');
@@ -12,30 +12,27 @@ var visibilityFlagForTheFirstScreen = false;
 
 var colorSelected;
 var totalNumberofTasks=0;
+var prevTitleOfTask="";
 
-
-highPriority.addEventListener('click',function()
-{
+highPriority.addEventListener('click', function () {
   colorSelected = "#FFEE58";
   document.getElementsByClassName('add-task-container__box')[0].style.background = colorSelected;
 });
 
-criticalPriority.addEventListener('click',() =>{
+criticalPriority.addEventListener('click', () => {
   colorSelected = "#FF7043";
   document.getElementsByClassName('add-task-container__box')[0].style.background = colorSelected;
 
 });
 
-mediumPriority.addEventListener('click',()=>
-{
+mediumPriority.addEventListener('click', () => {
   colorSelected = "#42A5F5";
   document.getElementsByClassName('add-task-container__box')[0].style.background = colorSelected;
-  
+
 });
 
-lowPriority.addEventListener('click',()=>
-{
-  colorSelected="#66BB6A";
+lowPriority.addEventListener('click', () => {
+  colorSelected = "#66BB6A";
   document.getElementsByClassName('add-task-container__box')[0].style.background = colorSelected;
 
 })
@@ -43,73 +40,108 @@ var tempListItem;
 
 
 
-saveTheButton.addEventListener('click',function(){
+saveTheButton.addEventListener('click', function () {
   var titleOfTask = document.getElementById('task_title').value;
   var Description = document.getElementById('task_description').value;
-  totalNumberofTasks++;
-  if(titleOfTask==='')
-  titleOfTask='Task #'+(totalNumberofTasks);
-  var descriptionJSON={description:"",color:"",deadline:""};
-  descriptionJSON['description']=Description;
-  descriptionJSON['color']=colorSelected;
 
+  if (titleOfTask === '')
+    titleOfTask = 'Task #' + (++totalNumberofTasks);
+  var descriptionJSON = {
+    description: "",
+    color: "",
+    deadline: ""
+  };
+  descriptionJSON['description'] = Description;
+  descriptionJSON['color'] = colorSelected;
+  colorSelected = '#fff';
   //hidetheContainer and load the diiv with the specific animation
-  storeTask(titleOfTask,descriptionJSON);
   visibilityFlagForTheFirstScreen = false;
   hideThetodoGridContainer(visibilityFlagForTheFirstScreen);
+  var gettingSpecificStorageItem = browser.storage.local.get(titleOfTask);
+  gettingSpecificStorageItem.then((tasks) => {
+    var taskKeys = Object.keys(tasks);
+    if(taskKeys.length>0)
+    {
+      var removedItem = browser.storage.local.remove(prevTitleOfTask)
+      removedItem.then(()=>{console.log('successfully removed')});
+      
+      var taskToBeStored = browser.storage.local.set({
+        [titleOfTask]: descriptionJSON
+      });
+      taskToBeStored.then(() => {
+        initializingTheExtensionFromLocalStorage();
+      });
+    }
+    else{
+  storeTask(titleOfTask, descriptionJSON);
+    }
+  
+})
 
 })
 
 function hideThetodoGridContainer(visibilityFlagForTheFirstScreen) {
-  if(!visibilityFlagForTheFirstScreen){
+  if (!visibilityFlagForTheFirstScreen) {
     todoGridContainer.style.visibility = 'visible';
-  addTaskContainer.style.visibility='hidden';
-document.getElementsByTagName('body')[0].style.background = '#f5f5f9';
-  }
-  else{
-todoGridContainer.style.visibility = 'hidden';
-addTaskContainer.style.visibility='visible';
-document.getElementsByTagName('body')[0].style.background = '#3949AB';
+    addTaskContainer.style.visibility = 'hidden';
+    document.getElementsByTagName('body')[0].style.background = '#f5f5f9';
+  } else {
+    todoGridContainer.style.visibility = 'hidden';
+    addTaskContainer.style.visibility = 'visible';
+    document.getElementsByTagName('body')[0].style.background = '#3949AB';
+    document.getElementsByClassName('add-task-container__box')[0].style.background = colorSelected;
 
   }
 }
 
-addButton.addEventListener('click',function(){
+addButton.addEventListener('click', function () {
   // tempListItem = '<li>Hello There I am freaking awesome</li>';
   var titleOfTask = document.getElementById('task_title');
   var Description = document.getElementById('task_description');
   var colorSelected = '#42A5F5';
   titleOfTask.value = "";
   Description.value = "";
-  if(!visibilityFlagForTheFirstScreen)
-  visibilityFlagForTheFirstScreen=true;
-  else
-  visibilityFlagForTheFirstScreen=false;
+  addButton.innerHTML='<i class="material-icons">clear</i>';
+  if (!visibilityFlagForTheFirstScreen){
+    addButton.innerHTML='<i class="material-icons">clear</i>';
+    visibilityFlagForTheFirstScreen = true;
+  }
+  else{
+    addButton.innerHTML='<i class="material-icons">add</i>';
+    visibilityFlagForTheFirstScreen = false;
+  }
   hideThetodoGridContainer(visibilityFlagForTheFirstScreen);
 })
 
 initializingTheExtensionFromLocalStorage();
 
-function initializingTheExtensionFromLocalStorage()
-{
+function initializingTheExtensionFromLocalStorage() {
   var gettingAllStorageItems = browser.storage.local.get(null);
-gettingAllStorageItems.then((tasks)=> {
-  var taskKeys = Object.keys(tasks);
-  totalNumberofTasks = taskKeys.length;
-  
+  var myNode = document.getElementsByClassName("todo-gridContainer__tasks__list")[0];
+var fc = myNode.firstChild;
+
+while( fc ) {
+    myNode.removeChild( fc );
+    fc = myNode.firstChild;
+}
+  gettingAllStorageItems.then((tasks) => {
+    var taskKeys = Object.keys(tasks);
+    totalNumberofTasks = taskKeys.length;
+
     for (const taskKey of taskKeys) {
       var currentTask = tasks[taskKey];
-      displayTheTask(taskKey,currentTask);
+      displayTheTask(taskKey, currentTask);
     }
-})
+  })
 
 }
 
-function storeTask(title,body)
-{
-  var taskToBeStored = browser.storage.local.set({[title]:body});
+function storeTask(title, body) {
+  var taskToBeStored = browser.storage.local.set({
+    [title]: body
+  });
   taskToBeStored.then(() => {
-    displayTheTask(title,body);
+    displayTheTask(title, body);
   })
 }
 
@@ -154,7 +186,24 @@ menuButton.addEventListener('click',function(e){
 })
 
 editButton.addEventListener('click',function(){
-  alert('Hi Working');
+ var titleOfTask = document.getElementById('task_title');
+  var Description = document.getElementById('task_description');
+  //var colorSelected = '#42A5F5';
+  titleOfTask.value = title;
+  prevTitleOfTask = title;
+  Description.value = body.description;
+  //Description.value = "";
+  colorSelected = body.color;
+  if (!visibilityFlagForTheFirstScreen)
+    visibilityFlagForTheFirstScreen = true;
+  else
+    visibilityFlagForTheFirstScreen = false;
+  hideThetodoGridContainer(visibilityFlagForTheFirstScreen);
+})
+
+doneButton.addEventListener('click',function(){
+  var removedItem = browser.storage.local.remove(title)
+  removedItem.then(()=>{initializingTheExtensionFromLocalStorage();});
 })
 
 listItem.appendChild(priorityTask);
@@ -162,38 +211,9 @@ listItem.appendChild(menuButton);
 listItem.appendChild(titleItem);
 listItem.appendChild(taskBody);
 listItem.appendChild(editPlusDeleteDiv);
-listItem.style.cursor='pointer';
-// listItem.appendChild(editButton);
-// listItem.addEventListener('click',()=>{
-  
-//   hideThetodoGridContainer(true);
-//   visibilityFlagForTheFirstScreen=true;
-//   var titleOfTask = document.getElementById('task_title');
-//   var Description = document.getElementById('task_description');
-//   titleOfTask.value = title;
-//   Description.value = body.description;
-// })
+//listItem.style.cursor='pointer';
+
 
 listitemsOfTodoTasks.appendChild(listItem);
 }
 
-
-// function shiftTheTaskfromTodotoDoneList(title,e,body){
-// var tobeTransferedelement=(e.target.parentNode)
-// listItemsOfDoneTasks.appendChild(tobeTransferedelement);
-// e.target.parentNode.removeChild(e.target);
-// browser.storage.local.remove('todo')
-// var doneTasksThatareStored = browser.storage.local.get();
-// var doneTasksinStorage={'done':{}};
-// doneTasksThatareStored.then((tasks)=>{
-//   if(tasks)
-//   doneTasksinStorage = tasks;
-// })  
-// doneTasksinStorage['done'][title]=body;
-// var taskToBeStored = browser.storage.local.set(doneTasksinStorage);
-//   taskToBeStored.then(() => {
-//     //displayTheTask(title,body);
-//   })
-// }
-
-//Todo: Window update has to be done so that all are in sync and also that there is code in annotate page
